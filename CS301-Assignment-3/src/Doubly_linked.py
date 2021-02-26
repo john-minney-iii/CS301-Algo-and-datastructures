@@ -1,17 +1,12 @@
 from Node import Node
 
-'''
-    TODO: In comments, describe the running time of each method
-          of your implementation.
-'''
-
 class Doubly_Linked:
 
     def __init__(self):
         self.head = None
 
     # -------------------------------------------
-
+    # Constent O(1)
     def add(self, item):
         if self.head is None:
             self.head = Node(data=item, dbly=True)
@@ -22,15 +17,15 @@ class Doubly_Linked:
             self.head = new
 
     # -------------------------------------------
-
-    #TODO: Create remove(item):
+    # If the item is first O(1)
+    # Otherwise O(n)
     def remove(self, item):
         currElt = self.head
         if currElt.fetchData() == item:
             self.head = currElt.fetchNext()
             return
         
-        while currElt:
+        while currElt: # Loops through all the elements
             if currElt.fetchData() == item:
                 break
             prevElt = currElt
@@ -46,7 +41,7 @@ class Doubly_Linked:
         currElt = None
 
     # -------------------------------------------
-
+    # O(n)
     def search(self, item) -> bool:
         return self._search_helper(item)[0]
     
@@ -56,7 +51,7 @@ class Doubly_Linked:
     def _search_helper(self, item):
         currentElt = self.head
         count = 0
-        while currentElt != None:
+        while currentElt != None: # Loops through all the elements
             if currentElt.fetchData() == item:
                 return True, count
             currentElt = currentElt.fetchNext()
@@ -65,41 +60,43 @@ class Doubly_Linked:
         return False, 0
 
     # -------------------------------------------
-
+    # Constent O(1)
     def isEmpty(self) -> bool:
         return self.head is None
 
     # -------------------------------------------
-
+    # O(n)
     def size(self) -> int:
         currentElt = self.head
         count = 0
 
-        while currentElt != None:
+        while currentElt != None: # Loops through all the elements
             count += 1
             currentElt = currentElt.fetchNext()
         return count
 
     # -------------------------------------------
-
+    # O(n)
     def append(self, item):
         if self.head is None:
             self.head = Node(data=item, dbly=True)
         else:
             currNode = self.head
-            while currNode.fetchNext() != None:
+            while currNode.fetchNext() != None:  # Loops through all the elements
                 currNode = currNode.fetchNext()
             new = Node(data=item, dbly=True)
             currNode.setNext(new)
             new.setPrev(currNode)
 
     # -------------------------------------------
-
+    # O(n)
+    # This also uses the _search_helper method
     def index(self, item) -> int:
         return self._search_helper(item)[1]
 
     # -------------------------------------------
-
+    # If first element: O(1)
+    # Otherwise O(n)
     def insert(self, pos, item):
         if pos > self.size() - 1 : raise IndexError("list index out of range")
         elif pos == 0 : self.add(item)
@@ -107,7 +104,7 @@ class Doubly_Linked:
             currElt = self.head
             count = 0
             newNode = Node(data=item, dbly=True)
-            while currElt:
+            while currElt:  # Loops through all the elements
                 prevElt = currElt
                 currElt = currElt.fetchNext()
                 if currElt.fetchNext() != None : nextElt = currElt.fetchNext()
@@ -119,7 +116,7 @@ class Doubly_Linked:
                     break
 
     # -------------------------------------------
-
+    # Both last element and index take O(n)
     def pop(self, pos = -1) -> str:
         if pos == -1:
             return self._pop_last()
@@ -128,7 +125,7 @@ class Doubly_Linked:
 
     def _pop_last(self) -> str:
         currElt = self.head
-        while currElt.fetchNext():
+        while currElt.fetchNext():  # Loops through all the elements
             if currElt.fetchNext().fetchNext() == None:
                 data = currElt.fetchNext().fetchData()
                 currElt.setNext(None)
@@ -145,7 +142,7 @@ class Doubly_Linked:
         else:
             currElt = self.head
             count = 0
-            while currElt:
+            while currElt:  # Loops through all the elements
                 prevElt = currElt
                 currElt = currElt.fetchNext()
                 nextElt = currElt.fetchNext()
@@ -158,11 +155,11 @@ class Doubly_Linked:
                     return data
 
     # -------------------------------------------
-
+    # O(n)
     def printList(self): 
         temp = self.head 
         print('Doubly List:')
-        while(temp): 
+        while(temp):  # Loops through all the elements
             print (" %d" %(temp.fetchData()), end=''), 
             temp = temp.fetchNext()
         print('\n')

@@ -1,8 +1,13 @@
 from Node import Node
 
 '''
-    TODO: In comments, describe the running time of each method
-          of your implementation.
+    Since the linked list is an abstract data structure and
+    is showing how lists work where we don't useually see it.
+    Though this linked list may be working, that doesn't mean it
+    is running as quick as it could be.
+
+    For the big o notation let n be the size of the linked-list
+
 '''
 
 class Linked_List:
@@ -11,19 +16,20 @@ class Linked_List:
         self.head = None
 
     # -------------------------------------------
-
-    def add(self, item):
+    # Constent O(1)
+    def add(self, item): 
         self.head = Node(item, self.head)
 
     # -------------------------------------------
-
+    # If the item is first O(1)
+    # Otherwise O(n)
     def remove(self, item):
         currElt = self.head
         if currElt.fetchData() == item:
             self.head = currElt.fetchNext()
             return
         
-        while currElt:
+        while currElt: # Loops through all the elements
             if currElt.fetchData() == item:
                 break
             prevElt = currElt
@@ -37,7 +43,7 @@ class Linked_List:
         currElt = None
 
     # -------------------------------------------
-
+    # O(n)
     def search(self, item) -> bool:
         return self._search_helper(item)[0]
     
@@ -47,7 +53,7 @@ class Linked_List:
     def _search_helper(self, item):
         currentElt = self.head
         count = 0
-        while currentElt != None:
+        while currentElt != None: # Loops through all the elements
             if currentElt.fetchData() == item:
                 return True, count
             currentElt = currentElt.fetchNext()
@@ -56,39 +62,41 @@ class Linked_List:
         return False, 0
 
     # -------------------------------------------
-
+    # O(1)
     def isEmpty(self) -> bool:
         return self.head is None
 
     # -------------------------------------------
-
+    # O(n)
     def size(self) -> int:
         currentElt = self.head
         count = 0
 
-        while currentElt != None:
+        while currentElt != None: # Loops through all the elements
             count += 1
             currentElt = currentElt.fetchNext()
         return count
 
     # -------------------------------------------
-
+    # O(n)
     def append(self, item):
         currElt = self.head
         if currElt:
-            while currElt.fetchNext():
+            while currElt.fetchNext(): # Loops through all the elements
                 currElt = currElt.fetchNext()
             currElt.setNext(Node(item))
         else:
             self.add(item)
 
     # -------------------------------------------
-
+    # O(n)
+    # This also uses the _search_helper method
     def index(self, item) -> int:
         return self._search_helper(item)[1]
 
     # -------------------------------------------
-
+    # If first element: O(1)
+    # Otherwise O(n)
     def insert(self, pos, item):
         if pos > self.size() - 1 : raise IndexError("list index out of range")
         elif pos == 0 : self.add(item)
@@ -96,7 +104,7 @@ class Linked_List:
             currElt = self.head
             count = 0
             newNode = Node(item)
-            while currElt:
+            while currElt: # Loops through all the elements
                 prevElt = currElt
                 currElt = currElt.fetchNext()
                 count += 1
@@ -105,8 +113,7 @@ class Linked_List:
                     newNode.setNext(currElt)
 
     # -------------------------------------------
-
-    # TODO: Add pop(self)
+    # Both last element and index take O(n)
     def pop(self, pos = -1) -> str:
         if pos == -1:
             return self._pop_last()
@@ -115,7 +122,7 @@ class Linked_List:
     
     def _pop_last(self) -> str:
         currElt = self.head
-        while currElt.fetchNext():
+        while currElt.fetchNext(): # Loops through all the elements
             if currElt.fetchNext().fetchNext() == None:
                 data = currElt.fetchNext().fetchData()
                 currElt.setNext(None)
@@ -132,7 +139,7 @@ class Linked_List:
         else:
             currElt = self.head
             count = 0
-            while currElt:
+            while currElt: # Loops through all the elements
                 prevElt = currElt
                 currElt = currElt.fetchNext()
                 count += 1
@@ -143,11 +150,11 @@ class Linked_List:
                     return data
 
     # -------------------------------------------
-
+    # O(n)
     def printList(self): 
         temp = self.head 
         print('Linked List:')
-        while(temp): 
+        while(temp): # Loops through all the elements
             print (" %d" %(temp.fetchData()), end=''), 
             temp = temp.fetchNext()
         print('\n')

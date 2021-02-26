@@ -24,3 +24,6 @@ class Node:
 
     def setPrev(self, prev):
         if self.dbly: self.prev = prev
+
+    def __str__(self):
+        return str(self.data)
