@@ -1,5 +1,7 @@
 
 # Assignment 4
+# Katie Williams
+# John Minney
 # 3/9/2021
 
 # https://github.com/john-minney-iii/CS301-Algo-and-datastructures/tree/master/CS301-Assignment-4
