@@ -104,12 +104,12 @@ def binary_search_test():
         li = [9841, 65, 21, 9, 5, 3, 7, 82, 42]
         li.sort()
         print(*li, sep=', ')
-        print('Search for 42:', search_sorted_list(li, 42))
+        print('Search for 9841:', search_sorted_list(li, 9841))
         print('Search for 99:', search_sorted_list(li, 99))
 
 def hashlist_test():
         print('HashList Test Case ---------------')
-        hash = HashList(10)
+        hash = HashList(5)
         print(hash.items())
         hash.put(14)
         print(hash.items())
@@ -124,11 +124,11 @@ def hashlist_test():
         print(hash.contains(5))
         print(hash.contains(4))
         print(hash.contains(199))
-        
 
 def main():
         binary_search_test()
         hashlist_test()
+        
 	
 	
 
